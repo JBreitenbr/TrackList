@@ -96,7 +96,7 @@ const ClientSide = () => {
 
   return (
     <div className="container bg-slate-200">
-      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleBand}>
+      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl">
         <option>--Select Artist--</option>
         {bands.map(item=>
           <option key={item}>{item}</option>

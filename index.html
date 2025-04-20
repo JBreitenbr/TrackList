@@ -85,13 +85,13 @@ const ClientSide = () => {
   }
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Myrath.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/${artist}.json");
       const data = await res.json();
       setPosts(data);
     };
 
     fetchPosts();
-  }, []);
+  }, [artist]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

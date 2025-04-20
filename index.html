@@ -56,7 +56,7 @@ const Pagination = ({
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination grid grid-cols-10">
         {pageNumbers.map((number) => (
           <li
             key={number}
@@ -78,7 +78,7 @@ const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  let bands=["John Coltrane","Myrath","Kraan","Rainbow","Banco Del Mutuo Soccorso","John Lennon","Yes","Logos","Ozric Tentacles","Radiohead"];
+  let bands=["John Coltrane","Myrath","Kraan","Rainbow","Banco Del Mutuo Soccorso","John Lennon","Yes","Logos","Ozric Tentacles","Radiohead","Franco Battiato","Fleetwood Mac"];
   const [artist,setArtist]=useState("John Coltrane");
   function handleArtist(e){
     setArtist(e.target.value);

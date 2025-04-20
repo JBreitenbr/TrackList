@@ -29,7 +29,7 @@ const PostList = ({ posts }) => {
   return (
     <ul className="list-group grid grid-cols-2">
       {posts.map((post,index) => (
-        <li key={index} className="list-group-item bg-teal-300">
+        <li key={index} className="list-group-item bg-orange-100">
           <img src={post.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}}/>
           <p>{post.track}</p>
         </li>
@@ -81,7 +81,7 @@ const ClientSide = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Steely Dan.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Kraan.json");
       const data = await res.json();
       setPosts(data);
     };

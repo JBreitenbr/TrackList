@@ -79,7 +79,10 @@ const ClientSide = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
   let bands=["John Coltrane","Myrath","Kraan","Rainbow","Franco Battiato"];
-  const [artist,setArtist]=useState("Myrath");
+  const [artist,setArtist]=useState("John Coltrane");
+  function handleArtist(e){
+    setArtist(e.target.value);
+  }
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Myrath.json");
@@ -96,7 +99,7 @@ const ClientSide = () => {
 
   return (
     <div className="container bg-slate-200">
-      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl">
+      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
         {bands.map(item=>
           <option key={item}>{item}</option>

@@ -78,10 +78,10 @@ const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-
+  const [artist,setArtist]=useState("John Coltrane");
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Kraan.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/{artist}.json");
       const data = await res.json();
       setPosts(data);
     };

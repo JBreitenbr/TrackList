@@ -85,13 +85,13 @@ const ClientSide = () => {
   }
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/${artist}.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/John Coltrane.json");
       const data = await res.json();
       setPosts(data);
     };
 
     fetchPosts();
-  }, [artist]);
+  }, []);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -99,6 +99,7 @@ const ClientSide = () => {
 
   return (
     <div className="container bg-slate-200">
+      <p>{artist}</p>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
         {bands.map(item=>

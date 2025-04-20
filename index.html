@@ -78,6 +78,7 @@ const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
+  let bands=["John Coltrane","Myrath","Kraan","Rainbow","Franco Battiato"];
   const [artist,setArtist]=useState("Myrath");
   useEffect(() => {
     const fetchPosts = async () => {
@@ -95,6 +96,11 @@ const ClientSide = () => {
 
   return (
     <div className="container bg-slate-200">
+      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleBand}>
+        <option>--Select Artist--</option>
+        {bands.map(item=>
+          <option key={item}>{item}</option>
+        )}</select>
       <PostList posts={currentPosts} />
       <Pagination
         postsPerPage={postsPerPage}

@@ -28,10 +28,10 @@ const {useState,useEffect}=React;
 const PostList = ({ posts }) => {
   return (
     <ul className="list-group">
-      {posts.map((post) => (
-        <li key={post.id} className="list-group-item bg-teal-500">
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
+      {posts.map((post,index) => (
+        <li key={index} className="list-group-item bg-teal-100">
+          <h3>{post.track}</h3>
+          <p>{post.artist}</p>
         </li>
       ))}
     </ul>
@@ -81,7 +81,7 @@ const ClientSide = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/John Coltrane.json");
       const data = await res.json();
       setPosts(data);
     };

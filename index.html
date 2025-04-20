@@ -81,7 +81,7 @@ const ClientSide = () => {
   const [artist,setArtist]=useState("Myrath");
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/${artist}.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Myrath.json");
       const data = await res.json();
       setPosts(data);
     };

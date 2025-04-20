@@ -77,7 +77,7 @@ const Pagination = ({
 const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -94,8 +94,7 @@ const ClientSide = () => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div className="container">
-      <h1>Blog Posts</h1>
+    <div className="container bg-slate-200">
       <PostList posts={currentPosts} />
       <Pagination
         postsPerPage={postsPerPage}

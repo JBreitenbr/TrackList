@@ -30,8 +30,9 @@
 }
 
 .list-group-item p {
-  color: #666;
-  line-height: 0.6;
+  color: #c3c3c3;
+  font-size: 0.8rem;
+  /*line-height: 0.6;*/
 }
 
 /* Pagination styling */

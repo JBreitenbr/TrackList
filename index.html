@@ -81,7 +81,7 @@ const ClientSide = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/John Coltrane.json");
+      const res = await fetch("https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Canzoni/Steely Dan.json");
       const data = await res.json();
       setPosts(data);
     };

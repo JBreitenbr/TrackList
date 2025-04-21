@@ -81,7 +81,7 @@ const ClientSide = () => {
   const [bandsArr,setBandsArr]=useState([]);
   const [bands,setBands]=useState([]);
   const [letter,setLetter]=useState();
-  const [artist,setArtist]=useState("Jack DeJohnette");
+  const [artist,setArtist]=useState("Eric Dolphy");
   function handleLetter(e){
     setLetter(e.target.value)
     /*setBands(bandsArr.find(item=>item.name===e.target.value).bands)*/
@@ -112,7 +112,7 @@ useEffect(() => {
   const fetchArr = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
       const data = await res.json();
-      setBandsArr(data.map((item)=>item.name));
+      setBandsArr(data);
     };
 
     fetchArr();

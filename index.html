@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="styles.css" >
+<script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+
+  </head>
+
+  <body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+
+    <script type="text/babel">
+const {useState,useEffect}=React;
+const Tooltip = (props) => {
+  let timeout;
+  const [active, setActive]=useState(false);
+  const showTip = () => {
+    timeout = setTimeout(()=>{
+      setActive(true);
+    }, props.delay || 400);
+  };
+  
+  const hideTip = () => {
+    clearInterval(timeout);
+    setActive(false);
+  };
+  return (
+    <div className = "Tooltip-Wrapper"
+         onMouseEnter={showTip}
+         onMouseLeave={hideTip}>
+      {props.children}
+      {active && (
+           <div className={`Tooltip-Tip ${props.direction || "top"}`}>
+             {props.content}
+           </div>
+       )}
+    </div>)
+};
+const TrackList = ({ tracks }) => {
+  return (<ul className="list-group grid grid-cols-2">
+      {tracks.map((track,index) => (
+        <li key={index} className="list-group-item bg-orange-100">
+          <Tooltip content="Hehehe!">
+            <img src={track.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}}/>
+          </Tooltip>
+            <p>{track.track}</p>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const Pagination = ({
+  tracksPerPage,
+  totalTracks,
+  setCurrentPage,
+  currentPage,
+}) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalTracks / tracksPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  const paginate = (pageNumber, e) => {
+    e.preventDefault();
+    setCurrentPage(pageNumber);
+  };
+
+  return (
+    <nav>
+      <ul className="pagination grid grid-cols-10">
+        {pageNumbers.map((number) => (
+          <li
+            key={number}
+            className={`page-item ${currentPage === number ? "active" : ""}`} >
+            <a
+              onClick={(e) => paginate(number, e)}
+              href="!#"
+              className="page-link"
+            >
+              {number}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};   
+const ClientSide = () => {
+  const [tracks, setTracks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [tracksPerPage] = useState(8);
+  const letters="ABCDEFGHJKLMNOPQRSTUVWYZ".split("");
+  const [letter,setLetter]=useState("B");
+  const [bands,setBands]=useState([]);
+  const [artist,setArtist]=useState("Thelonious Monk");
+  function handleLetter(e){
+    setLetter(e.target.value);
+  }
+  function handleArtist(e){
+    setArtist(e.target.value);
+  }
+  useEffect(() => {
+    const fetchTracks = async () => {
+      const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Songs/${artist}.json`);
+      const data = await res.json();
+      setTracks(data);
+    };
+
+    fetchTracks();
+  }, [artist]);
+useEffect(() => {
+    const fetchBands = async () => {
+      const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
+      const pre = await res.json();
+      const data=pre.filter((item)=>item.name==letter).map((item)=>item.bands.map((sub)=>sub.name)).flat();
+      setBands(data);
+    };
+
+    fetchBands();
+  },[letter]);
+  const indexOfLastTrack = currentPage * tracksPerPage;
+  const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
+  const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);
+
+  return (
+    <div className="container bg-slate-200">
+      <h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
+      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
+        <option>--Select Letter--</option>
+        {letters.map(item=>
+          <option key={item}>{item}</option>
+        )}</select>
+      <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
+        <option>--Select Artist--</option>
+        {bands.map(item=>
+          <option key={item}>{item}</option>
+        )}</select>
+      <TrackList tracks={currentTracks} />
+      <Pagination
+        tracksPerPage={tracksPerPage}
+        totalTracks={tracks.length}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
+    </div>
+  );
+};
+// Render the component to the DOM
+      ReactDOM.render(
+
+    <ClientSide/>,
+
+    document.getElementById("root")
+
+  );
+
+</script>
+
+  </body>
+
+</html>

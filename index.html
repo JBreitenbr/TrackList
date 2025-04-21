@@ -25,13 +25,13 @@
     <script type="text/babel">
 const {useState,useEffect}=React;
   // Define a component called Greetings
-const PostList = ({ posts }) => {
+const TrackList = ({ tracks }) => {
   return (
     <ul className="list-group grid grid-cols-2">
-      {posts.map((post,index) => (
+      {tracks.map((track,index) => (
         <li key={index} className="list-group-item bg-orange-100">
-          <img src={post.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}}/>
-          <p>{post.track}</p>
+          <img src={track.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}}/>
+          <p>{track.track}</p>
         </li>
       ))}
     </ul>
@@ -39,14 +39,14 @@ const PostList = ({ posts }) => {
 };
 
 const Pagination = ({
-  postsPerPage,
-  totalPosts,
+  tracksPerPage,
+  totalTracks,
   setCurrentPage,
   currentPage,
 }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalTracks / tracksPerPage); i++) {
     pageNumbers.push(i);
   }
   const paginate = (pageNumber, e) => {
@@ -75,22 +75,22 @@ const Pagination = ({
   );
 };   
 const ClientSide = () => {
-  const [posts, setPosts] = useState([]);
+  const [tracks, setTracks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(8);
+  const [tracksPerPage] = useState(8);
   const [bands,setBands]=useState([]);
-  const [artist,setArtist]=useState("Jack DeJohnette");
+  const [artist,setArtist]=useState("Maurice Ravel");
   function handleArtist(e){
     setArtist(e.target.value);
   }
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchTracks = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/Songs/${artist}.json`);
       const data = await res.json();
-      setPosts(data);
+      setTracks(data);
     };
 
-    fetchPosts();
+    fetchTracks();
   }, [artist]);
 useEffect(() => {
     const fetchBands = async () => {
@@ -102,9 +102,9 @@ useEffect(() => {
 
     fetchBands();
   },[]);
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastTrack = currentPage * tracksPerPage;
+  const indexOfFirstTrack = indexOfLastPost - tracksPerPage;
+  const currentTracks = tracjs.slice(indexOfFirstTrack, indexOfLastTrack);
 
   return (
     <div className="container bg-slate-200">
@@ -113,10 +113,10 @@ useEffect(() => {
         {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
-      <PostList posts={currentPosts} />
+      <TrackList tracks={currentTracks} />
       <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={posts.length}
+        tracksPerPage={tracksPerPage}
+        totalTracks={tracks.length}
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}
       />

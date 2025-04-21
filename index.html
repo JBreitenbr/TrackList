@@ -78,6 +78,7 @@ const ClientSide = () => {
   const [tracks, setTracks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [tracksPerPage] = useState(8);
+  const [letter,setLetter]=useState("B");
   const [bands,setBands]=useState([]);
   const [artist,setArtist]=useState("Maurice Ravel");
   function handleArtist(e){
@@ -110,7 +111,7 @@ useEffect(() => {
     <div className="container bg-slate-200">
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
-        {bands.map(item=>
+        {bands.filter((gr)=>gr.startsWith(letter)).map(item=>
           <option key={item}>{item}</option>
         )}</select>
       <TrackList tracks={currentTracks} />

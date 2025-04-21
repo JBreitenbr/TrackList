@@ -81,7 +81,7 @@ const ClientSide = () => {
   const letters="ABCDEFGHJKLMNOPQRSTUVWYZ".split("");
   const [letter,setLetter]=useState("B");
   const [bands,setBands]=useState([]);
-  const [artist,setArtist]=useState("Duke Ellington");
+  const [artist,setArtist]=useState("Thelonious Monk");
   function handleLetter(e){
     setLetter(e.target.value);
   }
@@ -101,7 +101,7 @@ useEffect(() => {
     const fetchBands = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/newApproach.json`);
       const pre = await res.json();
-      const data=pre.filter((item)=>item.letter);
+      const data=pre.map((item)=>item.letter);
       setBands(data);
     };
 

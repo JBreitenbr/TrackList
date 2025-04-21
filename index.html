@@ -50,8 +50,7 @@ const Tooltip = (props) => {
     </div>)
 };
 const TrackList = ({ tracks }) => {
-  return (<div><h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
-    <ul className="list-group grid grid-cols-2">
+  return (<ul className="list-group grid grid-cols-2">
       {tracks.map((track,index) => (
         <li key={index} className="list-group-item bg-orange-100">
           <Tooltip content="Hehehe!">
@@ -60,7 +59,7 @@ const TrackList = ({ tracks }) => {
             <p>{track.track}</p>
         </li>
       ))}
-    </ul></div>
+    </ul>
   );
 };
 
@@ -107,7 +106,7 @@ const ClientSide = () => {
   const letters="ABCDEFGHJKLMNOPQRSTUVWYZ".split("");
   const [letter,setLetter]=useState("B");
   const [bands,setBands]=useState([]);
-  const [artist,setArtist]=useState("Jimi Hendrix");
+  const [artist,setArtist]=useState("Thelonious Monk");
   function handleLetter(e){
     setLetter(e.target.value);
   }
@@ -139,6 +138,7 @@ useEffect(() => {
 
   return (
     <div className="container bg-slate-200">
+      <h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
         <option>--Select Letter--</option>
         {letters.map(item=>
@@ -159,15 +159,7 @@ useEffect(() => {
     </div>
   );
 };
-  function Greetings() {
-      
-    const [name,setName]=useState("Julia");
-    const handleChange=(e)=>setName(e.target.value);
-    return (<div><input onChange={handleChange} type="text"/><h1>Hello readers, Thank you, {name}, for reading this blog !</h1></div>);
-
-  }
-
-  // Render the component to the DOM
+// Render the component to the DOM
       ReactDOM.render(
 
     <ClientSide/>,

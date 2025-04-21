@@ -4,10 +4,9 @@
   --tooltip-margin: 30px;
   --tooltip-arrow-size: 6px;
 }
-.geom {
-  width: 200px;
-  height: 100px;
-  background-color: papayawhip;
+.bg {
+  background-image: url("https://www.dropbox.com/scl/fi/os8bmcbywldnhh6mbokek/retro_tapes.jpg?rlkey=eidyln9rfig2ycqn173ny3fqs&st=riecilt4&raw=1");
+  background-size: cover;
 }
 .Tooltip-Wrapper {
   display: inline-block;

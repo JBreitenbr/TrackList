@@ -53,7 +53,7 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 167.5 167.5' xmlns
   top: 100%;
   border-top-color:var(--tooltip-background-color);
   }
-.container {
+/*.container {
   max-width: 380px;
   margin: 20px auto;
   padding: 20px;
@@ -63,7 +63,6 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 167.5 167.5' xmlns
   font-family: "Arial", sans-serif;
 }
 
-/* Blog posts list styling */
 .list-group-item {
   background-color: white;
   border: 1px solid #ddd;
@@ -86,8 +85,7 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 167.5 167.5' xmlns
 .list-group-item p {
   color: navy;
   font-size: 0.8rem;
-  /*line-height: 0.6;*/
-}
+} */
 
 /* Pagination styling */
 .pagination {

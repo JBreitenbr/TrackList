@@ -106,7 +106,7 @@ useEffect(() => {
     };
 
     fetchBands();
-  },[]);
+  },[letter]);
   const indexOfLastTrack = currentPage * tracksPerPage;
   const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
   const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);

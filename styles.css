@@ -1,4 +1,51 @@
-/* General container styling */
+:root {
+  --tooltip-text-color: white;
+  --tooltip-background-color:black;
+  --tooltip-margin: 30px;
+  --tooltip-arrow-size: 6px;
+}
+.geom {
+  width: 200px;
+  height: 100px;
+  background-color: papayawhip;
+}
+.Tooltip-Wrapper {
+  display: inline-block;
+  position: relative;
+}
+.Tooltip-Tip {
+  position: absolute;
+  border-radius: 4px;
+  left:50%;
+  transform: translateX(-50%);
+  padding: 6px;
+  color: var(--tooltip-text-color);
+  background: var(--tooltip-background-color);
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 1;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.Tooltip-Tip::before {
+  content: " ";
+  left: 50%;
+  border: solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: var(--tooltip-arrow-size);
+  margin-left: calc(var(--tooltip-arrow-size)*-1);
+}
+.Tooltip-Tip.top {
+  top: calc(var(--tooltip-margin)*-1);
+}
+.Tooltip-Tip.top::before {
+  top: 100%;
+  border-top-color:var(--tooltip-background-color);
+  }
 .container {
   max-width: 380px;
   margin: 20px auto;

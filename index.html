@@ -149,7 +149,7 @@ useEffect(() => {
         {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
-      {artist=="none"?<div className="spoti mt-7 sm:mt-36"></div>:
+      {artist=="none"?(<div className="spoti mt-7 sm:mt-36"></div>):
       <TrackList tracks={currentTracks} />}
       <Pagination
         tracksPerPage={tracksPerPage}

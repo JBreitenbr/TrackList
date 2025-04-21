@@ -108,7 +108,7 @@ useEffect(() => {
 
     fetchBands();
   },[]);
-  
+ useEffect(()=>{ 
   const fetchArr = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
       const data = await res.json();

@@ -81,7 +81,6 @@ const ClientSide = () => {
   const [bandsArr,setBandsArr]=useState([]);
   const [bands,setBands]=useState([]);
   const [letter,setLetter]=useState();
-  const [bands, setBands]=useState([]);
   const [artist,setArtist]=useState("Thelonious Monk");
   function handleLetter(e){
     setLetter(e.target.value)
@@ -99,7 +98,7 @@ const ClientSide = () => {
 
     fetchPosts();
   }, [artist]);
-useEffect(() => {
+/*useEffect(() => {
     const fetchBands = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
       const pre = await res.json();
@@ -108,7 +107,7 @@ useEffect(() => {
     };
 
     fetchBands();
-  },[]);
+  },[]);*/
  useEffect(()=>{ 
   const fetchArr = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);

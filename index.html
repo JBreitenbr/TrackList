@@ -50,7 +50,7 @@ const Tooltip = (props) => {
     </div>)
 };
 const TrackList = ({ tracks }) => {
-  return (
+  return (<div><h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
     <ul className="list-group grid grid-cols-2">
       {tracks.map((track,index) => (
         <li key={index} className="list-group-item bg-orange-100">
@@ -60,7 +60,7 @@ const TrackList = ({ tracks }) => {
             <p>{track.track}</p>
         </li>
       ))}
-    </ul>
+    </ul></div>
   );
 };
 

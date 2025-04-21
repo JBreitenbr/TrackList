@@ -78,8 +78,8 @@ const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  let bands=["John Coltrane","Myrath","Kraan","Rainbow","Banco Del Mutuo Soccorso","John Lennon","Yes","Logos","Ozric Tentacles","Radiohead","Franco Battiato","Fleetwood Mac"];
-  const [artist,setArtist]=useState("John Coltrane");
+  const [bands,setBands]=useState([]);
+  const [artist,setArtist]=useState("Jack DeJohnette");
   function handleArtist(e){
     setArtist(e.target.value);
   }
@@ -92,7 +92,16 @@ const ClientSide = () => {
 
     fetchPosts();
   }, [artist]);
+useEffect(() => {
+    const fetchBands = async () => {
+      const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
+      const pre = await res.json();
+      const data=pre.slice(3,6).map((item)=>item.bands.map((sub)=>sub.name)).flat();
+      setBands(data);
+    };
 
+    fetchBands();
+  },[]);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);

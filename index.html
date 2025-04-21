@@ -103,7 +103,7 @@ useEffect(() => {
     fetchBands();
   },[]);
   const indexOfLastTrack = currentPage * tracksPerPage;
-  const indexOfFirstTrack = indexOfLastPost - tracksPerPage;
+  const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
   const currentTracks = tracjs.slice(indexOfFirstTrack, indexOfLastTrack);
 
   return (

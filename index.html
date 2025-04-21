@@ -104,9 +104,9 @@ const ClientSide = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [tracksPerPage] = useState(8);
   const letters="ABCDEFGHJKLMNOPQRSTUVWYZ".split("");
-  const [letter,setLetter]=useState("B");
+  const [letter,setLetter]=useState();
   const [bands,setBands]=useState([]);
-  const [artist,setArtist]=useState("Thelonious Monk");
+  const [artist,setArtist]=useState("none");
   function handleLetter(e){
     setLetter(e.target.value);
   }
@@ -149,7 +149,8 @@ useEffect(() => {
         {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
-      <TrackList tracks={currentTracks} />
+      {artist=="none"?<div className="spoti mt-7 sm:mt-36"></div>:
+      <TrackList tracks={currentTracks} />}
       <Pagination
         tracksPerPage={tracksPerPage}
         totalTracks={tracks.length}

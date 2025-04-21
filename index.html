@@ -138,6 +138,7 @@ useEffect(() => {
 
   return (
     <div className="container bg-slate-200">
+     <div className="bg-slate-300 flex flex-col" style={{position: "sticky",top:"0px",width:"100vw"}}>
       <h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
         <option>--Select Letter--</option>
@@ -148,7 +149,7 @@ useEffect(() => {
         <option>--Select Artist--</option>
         {bands.map(item=>
           <option key={item}>{item}</option>
-        )}</select>
+        )}</select></div><br>
       {artist=="none"?(<div className="spoti mt-7 sm:mt-36"></div>):
       <TrackList tracks={currentTracks} />}
       <Pagination

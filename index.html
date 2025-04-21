@@ -97,7 +97,7 @@ useEffect(() => {
     const fetchBands = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
       const pre = await res.json();
-      const data=pre.map((item)=>item.bands.map((sub)=>sub.name)).flat();
+      const data=pre.filter((item)=>item.name==letter).map((item)=>item.bands.map((sub)=>sub.name)).flat();
       setBands(data);
     };
 
@@ -111,7 +111,7 @@ useEffect(() => {
     <div className="container bg-slate-200">
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
-        {bands.filter((gr)=>gr.startsWith(letter)).map(item=>
+        {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
       <TrackList tracks={currentTracks} />

@@ -78,14 +78,8 @@ const ClientSide = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
-  const [bandsArr,setBandsArr]=useState([]);
   const [bands,setBands]=useState([]);
-  const [letter,setLetter]=useState();
-  const [artist,setArtist]=useState("Thelonious Monk");
-  function handleLetter(e){
-    setLetter(e.target.value)
-    setBands(bandsArr.find(item=>item.name===e.target.value).bands);
-  }
+  const [artist,setArtist]=useState("Jack DeJohnette");
   function handleArtist(e){
     setArtist(e.target.value);
   }
@@ -98,7 +92,7 @@ const ClientSide = () => {
 
     fetchPosts();
   }, [artist]);
-/*useEffect(() => {
+useEffect(() => {
     const fetchBands = async () => {
       const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
       const pre = await res.json();
@@ -107,15 +101,6 @@ const ClientSide = () => {
     };
 
     fetchBands();
-  },[]);*/
- useEffect(()=>{ 
-  const fetchArr = async () => {
-      const res = await fetch(`https://raw.githubusercontent.com/JBreitenbr/Spoti-Data/refs/heads/main/bandSubs.json`);
-      const data = await res.json();
-      setBandsArr(data);
-    };
-
-    fetchArr();
   },[]);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -123,15 +108,9 @@ const ClientSide = () => {
 
   return (
     <div className="container bg-slate-200">
-      <select className="mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
-      <option>--Select Letter--</option>
-        {bandsArr.map(item=>
-          <option key={item.name}>{item.name}</option>
-        )}
-      </select>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
-        {posts.map(item=>
+        {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
       <PostList posts={currentPosts} />

@@ -81,10 +81,11 @@ const ClientSide = () => {
   const [bandsArr,setBandsArr]=useState([]);
   const [bands,setBands]=useState([]);
   const [letter,setLetter]=useState();
-  const [artist,setArtist]=useState("Eric Dolphy");
+  const [bands, setBands]=useState([]);
+  const [artist,setArtist]=useState("Thelonious Monk");
   function handleLetter(e){
     setLetter(e.target.value)
-    /*setBands(bandsArr.find(item=>item.name===e.target.value).bands)*/
+    setBands(bandsArr.find(item=>item.name===e.target.value).bands);
   }
   function handleArtist(e){
     setArtist(e.target.value);

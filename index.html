@@ -131,7 +131,7 @@ const ClientSide = () => {
       </select>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleArtist}>
         <option>--Select Artist--</option>
-        {bands.map(item=>
+        {posts.map(item=>
           <option key={item}>{item}</option>
         )}</select>
       <PostList posts={currentPosts} />

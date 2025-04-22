@@ -56,7 +56,7 @@ const TrackList = ({ tracks }) => {
           <Tooltip content="Hehehe!">
             <img src={track.album_pic} className="h-20 w-20 sm:h-32 sm:w-32" style={{border:"1px solid #0f172a"}}/>
           </Tooltip>
-            <p>{track.track}</p>
+            <div className="text-base sm:text-xl md:text-2xl xl:text-3xl mt-2 text-white">{track.track}</div>
         </li>
       ))}
     </ul>
@@ -104,9 +104,9 @@ const ClientSide = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [tracksPerPage] = useState(8);
   const letters="ABCDEFGHJKLMNOPQRSTUVWYZ".split("");
-  const [letter,setLetter]=useState("B");
+  const [letter,setLetter]=useState();
   const [bands,setBands]=useState([]);
-  const [artist,setArtist]=useState("Thelonious Monk");
+  const [artist,setArtist]=useState("none");
   function handleLetter(e){
     setLetter(e.target.value);
   }
@@ -137,8 +137,9 @@ useEffect(() => {
   const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);
 
   return (
-    <div className="container bg-slate-200">
-      <h3 className="text-white text-center text-3xl h-24 pt-8 mb-6 bg" >My Own Private Spotify</h3>
+    <div className="container justify-items-center bg-slate-200">
+      <h3 className="text-white text-center text-2xl h-16 pt-4 mb-6 bg" >My Own Private Spotify</h3>
+      <div className="mb-4 flex flex-col">
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
         <option>--Select Letter--</option>
         {letters.map(item=>
@@ -149,7 +150,8 @@ useEffect(() => {
         {bands.map(item=>
           <option key={item}>{item}</option>
         )}</select>
-      <TrackList tracks={currentTracks} />
+      </div>
+      {artist=="none"?<div className="spoti"></div>:<TrackList tracks={currentTracks} />}
       <Pagination
         tracksPerPage={tracksPerPage}
         totalTracks={tracks.length}

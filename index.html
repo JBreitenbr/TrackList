@@ -135,9 +135,9 @@ useEffect(() => {
   const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);
 
   return (
-    <div className="container justify-items-center bg-slate-200">
-      <h3 className="text-white text-center text-2xl h-16 pt-4 mb-6 bg" >My Own Private Spotify</h3>
-      <div className="mb-4 flex flex-col">
+      <div className="generale bg-slate-500" style={{position:"relative"}}>
+     <div className="bg-slate-300 flex flex-col" style={{position: "sticky",top:"0px",width:"100vw"}}>
+      <h3 className="text-white text-center text-3xl h-32 pt-8 mb-6 bg" >My Own Private Spotify</h3>
       <select className="mb-6 mx-8 sm:mx-32 sm:h-6 sm:text-xl" onChange={handleLetter}>
         <option>--Select Letter--</option>
         {letters.map(item=>

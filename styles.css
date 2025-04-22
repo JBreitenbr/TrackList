@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: #64748B;
+  background-color: /*#64748B*/ salmon;
   font-family:'Nunito',Arial,sans-serif;
 }
 
